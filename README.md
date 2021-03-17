@@ -1,3 +1,8 @@
+# これまでの状況
+
+* 2021/3/16 MonacaにてReact + OnsenUIのハイブリッドスマホアプリの新規プロジェクトを構築
+* 2021/3/17 CSSフレームワーク `Buluma` の導入を試みるがOnsenUIとの競合が発生。Monaca + OnsenUIを切り離し、Create React App にて新規プロジェクトを起こす。
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
