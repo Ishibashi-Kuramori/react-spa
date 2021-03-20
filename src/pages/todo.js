@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 export default class Todo extends Component {
 
   // コンストラクタ
@@ -49,22 +51,22 @@ export default class Todo extends Component {
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
-                <a class="button is-small">
+                <Link to="/register" class="button is-small">
                   <span class="icon mr-0">
                     <i class="fa fa-user-plus"></i>
                   </span>
                   <span>
                     Register
                   </span>
-                </a>
+                </Link>
               </p>
               <p class="control">
-                <a class="button is-small is-info is-outlined">
+                <Link to="/login" class="button is-small is-info is-outlined">
                   <span class="icon mr-0">
                     <i class="fa fa-user"></i>
                   </span>
                   <span>Login</span>
-                </a>
+                </Link>
               </p>
             </div>
           </div>
