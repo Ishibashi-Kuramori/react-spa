@@ -1,5 +1,35 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import {SortableContainer, SortableElement} from 'react-sortable-hoc';
+import arrayMove from 'array-move';
+
+const SortableItem = SortableElement(({todo, sortIndex, onDeleteHandler}) =>
+  <tr>
+    <td>{sortIndex + 1}</td>
+    <td>{todo.name}</td>
+    <td>{todo.date}</td>
+    <td>
+      <button class="button is-danger is-small" onClick={() => { onDeleteHandler(sortIndex) }}>
+        <i class="far fa-trash-alt"></i>&nbsp;削除
+      </button>
+    </td>
+  </tr>
+);
+
+const SortableList = SortableContainer(({todos, onDeleteHandler}) => {
+  return (
+    <tbody>
+      {todos.map((todo, index) => (
+        <SortableItem
+          key={index}
+          index={index}
+          sortIndex={index}
+          todo={todo}
+          onDeleteHandler={onDeleteHandler} />
+      ))}
+    </tbody>
+  );
+});
 
 export default class Todo extends Component {
 
@@ -22,8 +52,13 @@ export default class Todo extends Component {
   // 登録ボタンクリック時
   addTodo = () => {
     const { todos, name } = this.state;
+    if(!name) return;
+    var obj = {
+      name: name,
+      date: new Date().toLocaleString()
+    }
     this.setState({
-      todos: [...todos, name]
+      todos: [...todos, obj]
     });
   }
 
@@ -34,6 +69,13 @@ export default class Todo extends Component {
       todos: [...todos.slice(0, index), ...todos.slice(index + 1)]
     });
   }
+
+  // レコード並び替え時
+  onSortEnd = ({oldIndex, newIndex}) => {
+    this.setState(({todos}) => ({
+      todos: arrayMove(todos, oldIndex, newIndex),
+    }));
+  };
 
   // TODO: navは別コンポーネントに移す
   render() {
@@ -84,48 +126,45 @@ export default class Todo extends Component {
     </div>
 
     <div class="columns">
-      <div class="column"></div>
-      <div class="card column is-half">
+      <div class="card column m-5">
         <div class="card-content">
           <div class="content">
 
-      <div class="field has-addons">
-        <div class="control">
-          <input class="input" type="text" placeholder="TODOを入力" onInput={this.onInput} />
-        </div>
-        <div class="control">
-          <button class="button is-info" onClick={this.addTodo}>
-            <i class="far fa-edit"></i>&nbsp;登録
-          </button>
-        </div>
-      </div>
+            <div class="field has-addons">
+              <div class="control">
+                <input class="input" type="text" placeholder="TODOを入力" onInput={this.onInput} />
+              </div>
+              <div class="control">
+                <button class="button is-info" onClick={this.addTodo}>
+                  <i class="far fa-edit"></i>&nbsp;登録
+                </button>
+              </div>
+            </div>
 
-      <table class="table is-striped">
-        <thead>
-          <tr>
-            <th><abbr title="Position">No</abbr></th>
-            <th><abbr title="Position">Todo</abbr></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {todos.map((todo, index) => <tr key={index}>
-            <td>{index + 1}</td>
-            <td>{todo}</td>
-            <td>
-              <button class="button is-danger is-small" onClick={() => { this.removeTodo(index) }}>
-                <i class="far fa-trash-alt"></i>&nbsp;削除
-              </button>
-            </td>
-          </tr>)}
-        </tbody>
-      </table>
-
+            {todos.length > 0 &&
+              <table class="table is-striped">
+                <thead>
+                  <tr>
+                    <th><abbr title="Position">No</abbr></th>
+                    <th><abbr title="Position">Todo</abbr></th>
+                    <th><abbr title="Position">Date</abbr></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <SortableList
+                  todos={this.state.todos}
+                  onSortEnd={this.onSortEnd}
+                  onDeleteHandler={this.removeTodo} />
+              </table>
+            }
+            {todos.length == 0 &&
+              <div class="notification is-primary">
+                TODO を入力して登録して下さい
+              </div>
+            }
           </div>
-
         </div>
       </div>
-      <div class="column"></div>
     </div>
 
 
