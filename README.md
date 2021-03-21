@@ -1,5 +1,10 @@
 # これまでの状況
 
+## 2021/3/21
+* react-sortable-hocを導入し、レコードのドラッグ＆ドロップでの入れ替えを実装
+* TODO テーブルの日時出力、0件時の表示切替を実装
+![20210321](https://user-images.githubusercontent.com/78581467/111906602-9edcde80-8a94-11eb-900d-aad75d01cfca.png)
+
 ## 2021/3/20
 * react-router-dom を導入し、ログイン画面、新規ユーザ登録画面へのページ遷移を実装
 * sourcetreeをインストールし、Git Flowの作法に準拠した運用に切り替える。
