@@ -1,4 +1,9 @@
+# DEMO
+[https://ishibashi-kuramori.github.io/react-spa/build/](https://ishibashi-kuramori.github.io/react-spa/build/)
+
 # これまでの状況
+## 2021/3/22
+Git Hub Pages にてプロジェクトのDEMOページを公開
 
 ## 2021/3/21
 * react-sortable-hocを導入し、レコードのドラッグ＆ドロップでの入れ替えを実装
