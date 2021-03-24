@@ -2,6 +2,10 @@
 [https://ishibashi-kuramori.github.io/react-spa/build/](https://ishibashi-kuramori.github.io/react-spa/build/)
 
 # これまでの状況
+## 2021/3/24
+ログイン画面を作成。バリデーションと認証は実装したが、セッションとDB入出力は未実装
+![20210324](https://user-images.githubusercontent.com/78581467/112326387-d39ca000-8cf7-11eb-922d-a04c66faaf4c.png)
+
 ## 2021/3/22
 Git Hub Pages にてプロジェクトのDEMOページを公開
 
