@@ -9,8 +9,8 @@ const SortableItem = SortableElement(({todo, sortIndex, onDeleteHandler}) =>
     <td>{todo.name}</td>
     <td>{todo.date}</td>
     <td>
-      <button class="button is-danger is-small" onClick={() => { onDeleteHandler(sortIndex) }}>
-        <i class="far fa-trash-alt"></i>&nbsp;削除
+      <button className="button is-danger is-small" onClick={() => { onDeleteHandler(sortIndex) }}>
+        <i className="far fa-trash-alt"></i>&nbsp;削除
       </button>
     </td>
   </tr>
@@ -64,7 +64,7 @@ export default class Todo extends Component {
 
   // 削除ボタンクリック時
   removeTodo = (index) => {
-    const { todos, name } = this.state;
+    const { todos } = this.state;
     this.setState({
       todos: [...todos.slice(0, index), ...todos.slice(index + 1)]
     });
@@ -82,30 +82,30 @@ export default class Todo extends Component {
     const { todos } = this.state;
     return (<div>
 
-    <nav class="navbar has-shadow">
-      <div class="container">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="../">
+    <nav className="navbar has-shadow">
+      <div className="container">
+        <div className="navbar-brand">
+          <a className="navbar-item" href="../">
             <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" />
           </a>
         </div>
-        <div class="navbar-end mr-0">
-          <div class="navbar-item">
-            <div class="field is-grouped">
-              <p class="control">
-                <Link to="/register" class="button is-small">
-                  <span class="icon mr-0">
-                    <i class="fa fa-user-plus"></i>
+        <div className="navbar-end mr-0">
+          <div className="navbar-item">
+            <div className="field is-grouped">
+              <p className="control">
+                <Link to="/register" className="button is-small">
+                  <span className="icon mr-0">
+                    <i className="fa fa-user-plus"></i>
                   </span>
                   <span>
                     Register
                   </span>
                 </Link>
               </p>
-              <p class="control">
-                <Link to="/login" class="button is-small is-info is-outlined">
-                  <span class="icon mr-0">
-                    <i class="fa fa-user"></i>
+              <p className="control">
+                <Link to="/login" className="button is-small is-info is-outlined">
+                  <span className="icon mr-0">
+                    <i className="fa fa-user"></i>
                   </span>
                   <span>Login</span>
                 </Link>
@@ -116,33 +116,33 @@ export default class Todo extends Component {
       </div>
     </nav>
 
-    <div class="hero is-info is-bold">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">Simple Todo List</h1>
-          <h2 class="subtitle">@React & Bulma Practice By Ishibashi</h2>
+    <div className="hero is-info is-bold">
+      <div className="hero-body">
+        <div className="container">
+          <h1 className="title">Simple Todo List</h1>
+          <h2 className="subtitle">@React & Bulma Practice By Ishibashi</h2>
         </div>
       </div>
     </div>
 
-    <div class="columns">
-      <div class="card column m-5">
-        <div class="card-content">
-          <div class="content">
+    <div className="columns">
+      <div className="card column m-5">
+        <div className="card-content">
+          <div className="content">
 
-            <div class="field has-addons">
-              <div class="control">
-                <input class="input" type="text" placeholder="TODOを入力" onInput={this.onInput} />
+            <div className="field has-addons">
+              <div className="control">
+                <input className="input" type="text" placeholder="TODOを入力" onInput={this.onInput} />
               </div>
-              <div class="control">
-                <button class="button is-info" onClick={this.addTodo}>
-                  <i class="far fa-edit"></i>&nbsp;登録
+              <div className="control">
+                <button className="button is-info" onClick={this.addTodo}>
+                  <i className="far fa-edit"></i>&nbsp;登録
                 </button>
               </div>
             </div>
 
             {todos.length > 0 &&
-              <table class="table is-striped">
+              <table className="table is-striped">
                 <thead>
                   <tr>
                     <th><abbr title="Position">No</abbr></th>
@@ -157,8 +157,8 @@ export default class Todo extends Component {
                   onDeleteHandler={this.removeTodo} />
               </table>
             }
-            {todos.length == 0 &&
-              <div class="notification is-primary">
+            {todos.length === 0 &&
+              <div className="notification is-primary">
                 TODO を入力して登録して下さい
               </div>
             }
