@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import {SortableContainer, SortableElement} from 'react-sortable-hoc';
 import arrayMove from 'array-move';
+import TopNav from './top_nav.js';
 
 const SortableItem = SortableElement(({todo, sortIndex, onDeleteHandler}) =>
   <tr>
@@ -77,53 +77,10 @@ export default class Todo extends Component {
     }));
   };
 
-  // TODO: navは別コンポーネントに移す
   render() {
-    const { todos } = this.state;
     return (<div>
 
-    <nav className="navbar has-shadow">
-      <div className="container">
-        <div className="navbar-brand">
-          <a className="navbar-item" href="../">
-            <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" />
-          </a>
-        </div>
-        <div className="navbar-end mr-0">
-          <div className="navbar-item">
-            <div className="field is-grouped">
-              <p className="control">
-                <Link to="/register" className="button is-small">
-                  <span className="icon mr-0">
-                    <i className="fa fa-user-plus"></i>
-                  </span>
-                  <span>
-                    Register
-                  </span>
-                </Link>
-              </p>
-              <p className="control">
-                <Link to="/login" className="button is-small is-info is-outlined">
-                  <span className="icon mr-0">
-                    <i className="fa fa-user"></i>
-                  </span>
-                  <span>Login</span>
-                </Link>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <div className="hero is-info is-bold">
-      <div className="hero-body">
-        <div className="container">
-          <h1 className="title">Simple Todo List</h1>
-          <h2 className="subtitle">@React & Bulma Practice By Ishibashi</h2>
-        </div>
-      </div>
-    </div>
+    <TopNav />
 
     <div className="columns">
       <div className="card column m-5">
@@ -141,7 +98,7 @@ export default class Todo extends Component {
               </div>
             </div>
 
-            {todos.length > 0 &&
+            {this.state.todos.length > 0 &&
               <table className="table is-striped">
                 <thead>
                   <tr>
@@ -157,7 +114,7 @@ export default class Todo extends Component {
                   onDeleteHandler={this.removeTodo} />
               </table>
             }
-            {todos.length === 0 &&
+            {this.state.todos.length === 0 &&
               <div className="notification is-primary">
                 TODO を入力して登録して下さい
               </div>
