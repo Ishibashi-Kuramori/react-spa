@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import {firebaseAuth} from '../firebase.js';
 
 export default class Login extends Component {
 
@@ -35,14 +36,17 @@ export default class Login extends Component {
     const email = this.elements['email'].value;
     const password = this.elements['password'].value;
 
-    // TODO: いずれ正式なログイン認証を実装する
-    if(email === 'a@a.com' && password === 'aaaa') {
+    firebaseAuth.signInWithEmailAndPassword(email, password)
+    .then((response) => {
       this.props.history.push('/');
-    } else {
+    })
+    .catch((error) => {
+      console.log(error);
       this.setState({
         isLoginError: true,
       });
-    }
+    });
+
   }
 
   render() {
@@ -66,7 +70,7 @@ export default class Login extends Component {
             </div>
             <div className="field">
               <div className="control">
-                <input className="input is-medium is-rounded" type="password" name="password" placeholder="**********" autoComplete="current-password" required minLength="4"/>
+                <input className="input is-medium is-rounded" type="password" name="password" placeholder="**********" autoComplete="current-password" required minLength="6"/>
               </div>
             </div>
             <br />
@@ -91,7 +95,7 @@ export default class Login extends Component {
       </div>
       {this.state.isLoginError &&
         <div className="notification is-warning">
-          デバッグ用 Email: a@a.com  Pass: aaaa 
+          デバッグ用 Email: a@a.com  Pass: aaaaaa
         </div>
       }
     </section>

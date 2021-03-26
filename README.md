@@ -1,7 +1,11 @@
 # DEMO
-[https://ishibashi-kuramori.github.io/react-spa/build/](https://ishibashi-kuramori.github.io/react-spa/build/)
+[https://react-spa-59788.web.app/](https://react-spa-59788.web.app/)
 
 # これまでの状況
+## 2021/3/26
+* Firebaseを導入し、ログイン認証実処理＆ログアウトを実装。
+* 公開ページをGit Hub Pages から Firebase Hosting に変更 [https://ishibashi-kuramori.github.io/react-spa/build/](https://ishibashi-kuramori.github.io/react-spa/build/) ⇒ [https://react-spa-59788.web.app/](https://react-spa-59788.web.app/)
+
 ## 2021/3/24
 ログイン画面を作成。バリデーションと認証は実装したが、セッションとDB入出力は未実装
 ![20210324](https://user-images.githubusercontent.com/78581467/112326387-d39ca000-8cf7-11eb-922d-a04c66faaf4c.png)
