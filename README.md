@@ -2,6 +2,9 @@
 [https://react-spa-59788.web.app/](https://react-spa-59788.web.app/)
 
 # これまでの状況
+## 2021/3/27
+新規ユーザ登録画面＆内部処理とアカウント削除処理を実装
+
 ## 2021/3/26
 * Firebaseを導入し、ログイン認証実処理＆ログアウトを実装。
 * 公開ページをGit Hub Pages から Firebase Hosting に変更 [https://ishibashi-kuramori.github.io/react-spa/build/](https://ishibashi-kuramori.github.io/react-spa/build/) ⇒ [https://react-spa-59788.web.app/](https://react-spa-59788.web.app/)
