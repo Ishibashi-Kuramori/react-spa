@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Todo from './pages/todo';
+import Mde from './pages/mde';
 import Login from './pages/login';
 import Register from './pages/register';
 
@@ -10,10 +10,10 @@ class App extends React.Component {
     return(
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={Todo} />
+          <Route exact path="/" component={Mde} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route component={Todo} />
+          <Route component={Mde} />
         </Switch>
       </BrowserRouter>
     );
