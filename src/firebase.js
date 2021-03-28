@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 
 const env = process.env;
 export const firebaseConfig = {
@@ -14,3 +15,4 @@ export const firebaseConfig = {
 // Firebaseを紐付け、初期化
 export const firebaseApp = firebase.initializeApp(firebaseConfig);
 export const firebaseAuth = firebaseApp.auth();
+export const firebaseStore = firebaseApp.firestore();

@@ -82,6 +82,15 @@ export default class Todo extends Component {
 
     <TopNav />
 
+    <div className="hero is-info is-bold">
+      <div className="hero-body">
+        <div className="container">
+          <h1 className="title">Simple Todo List</h1>
+          <h2 className="subtitle">@React & Bulma Practice By Ishibashi</h2>
+        </div>
+      </div>
+    </div>
+
     <div className="columns">
       <div className="card column m-5">
         <div className="card-content">

@@ -9,7 +9,7 @@
   --shadowLight: #EFF5FE;
 }
 
-/* ログイン画面 */
+/* ログイン, 新規登録画面 */
 #loginPage {
   background: var(--background);
 }
@@ -31,3 +31,18 @@
 #loginPage a {
   font-weight: 600;
 }
+
+/* マークダウン入力画面 */
+#mdePage .mde-input-height {
+  height: 700px;
+}
+
+#mdePage .mde-output-height {
+  height: 675px;
+  overflow-y: scroll;
+}
+
+#mdePage textarea {
+  height: 100%;
+}
+

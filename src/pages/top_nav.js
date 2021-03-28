@@ -10,14 +10,24 @@ export default class TopNav extends Component {
     this.state = {
       isShowModal: false
     };
+    this._isMounted = false; // unmountを判断(setStateの警告対策)
   }
 
   // render読み込み後にログイン状態をチェック
   // ※constructorでやるとsetStateで警告が出る
   componentDidMount() {
+    this._isMounted = true;
     firebaseAuth.onAuthStateChanged((user) => {
-      this.setState({ user: user })
+      if(this._isMounted) {
+        this.setState({ user: user })
+        this.props.updateUser(user);
+      }
     })
+  }
+
+  // unmount中は更新を停止
+  componentWillUnmount = () => {
+    this._isMounted = false;
   }
 
   // Logoutボタンクリック時
@@ -55,9 +65,7 @@ export default class TopNav extends Component {
       <nav className="navbar has-shadow">
         <div className="container">
           <div className="navbar-brand">
-            <a className="navbar-item" href="../">
-              <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" />
-            </a>
+            <p className="is-size-5 has-text-weight-bold has-text-info mt-3">Simple Markdown Editer</p>
           </div>
           <div className="navbar-end mr-0">
             <div className="navbar-item">
@@ -119,15 +127,6 @@ export default class TopNav extends Component {
           </div>
         </div>
       </nav>
-
-      <div className="hero is-info is-bold">
-        <div className="hero-body">
-          <div className="container">
-            <h1 className="title">Simple Todo List</h1>
-            <h2 className="subtitle">@React & Bulma Practice By Ishibashi</h2>
-          </div>
-        </div>
-      </div>
 
       {this.state.user &&
       <div className={'modal ' + (this.state.isShowModal ? 'is-active' : '')}>
