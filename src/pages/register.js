@@ -48,7 +48,7 @@ export default class Register extends Component {
       user.updateProfile({
         displayName: name,
       }).then(function() {
-        history.push('/');
+        history.push('/mdl');
       })
       .catch((error) => {
         console.log(error);

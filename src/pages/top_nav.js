@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {firebaseAuth} from '../firebase.js';
+import {firebaseStore} from '../firebase.js';
 
 export default class TopNav extends Component {
 
@@ -52,8 +53,18 @@ export default class TopNav extends Component {
   // ユーザ削除処理
   deleteUser = () => {
     const hideModal = this.hideModal;
+    const uid = this.state.user.uid;
     this.state.user.delete().then(function() {
-      hideModal();
+      // ユーザ投稿データの削除
+      firebaseStore.collection('mds').where('uid', '==', uid).get().then((snapshot) => {
+        snapshot.forEach((doc) => {
+          firebaseStore.collection('mds').doc(doc.id).delete();
+        });
+        hideModal();
+      }).catch((error) => {
+        console.error("Error removing document: ", error);
+        hideModal();
+      });
     }).catch(function(error) {
       console.log(error);
       alert('ユーザ削除に失敗しました。\n一旦ログアウトしてもう一度お試し下さい。');

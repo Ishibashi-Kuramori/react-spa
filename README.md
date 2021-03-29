@@ -2,6 +2,10 @@
 [https://react-spa-59788.web.app/](https://react-spa-59788.web.app/)
 
 # これまでの状況
+## 2021/3/29
+投稿一覧画面を作成。ログインユーザ単位の投稿の作成/編集/削除を実装。
+![20210329](https://user-images.githubusercontent.com/78581467/112832567-77a79200-90d0-11eb-91cc-5d3f84430e74.png)
+
 ## 2021/3/28
 TODOアプリでは実用性に欠けるので、本プロジェクトを簡易マークダウンエディタにリニューアル
 ![20210328](https://user-images.githubusercontent.com/78581467/112756981-8df71480-9022-11eb-99f0-b3e5584af574.png)

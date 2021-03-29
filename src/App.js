@@ -4,6 +4,7 @@ import './App.css';
 import Mde from './pages/mde';
 import Login from './pages/login';
 import Register from './pages/register';
+import Mdl from './pages/mdl';
 
 class App extends React.Component {
   render(){
@@ -13,6 +14,7 @@ class App extends React.Component {
           <Route exact path="/" component={Mde} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/mdl" component={Mdl} />
           <Route component={Mde} />
         </Switch>
       </BrowserRouter>
