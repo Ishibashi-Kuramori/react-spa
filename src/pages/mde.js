@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TopNav from './top_nav.js';
+import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown/with-html';
 import {firebaseStore} from '../firebase.js';
 import firebase from "firebase/app";
@@ -9,11 +10,12 @@ export default class Mde extends Component {
   // コンストラクタ
   constructor(props) {
     super(props);
+    var md = this.props.location.md;
     this.state = {
       user: {},
-      id: '',
-      title: '',
-      text: ''
+      id:    md ? md.mdid  : '',
+      title: md ? md.title : '',
+      text:  md ? md.text  : ''
     };
   }
 
@@ -80,7 +82,7 @@ export default class Mde extends Component {
       <div className="hero-body columns pt-5 pl-5 pr-5 pb-0">
 
         <div className="column mde-input-height">
-          <textarea className="textarea is-large has-fixed-size" placeholder="Markdownを入力" onInput={this.onInputText}></textarea>
+          <textarea className="textarea is-large has-fixed-size" value={this.state.text} placeholder="Markdownを入力" onInput={this.onInputText}></textarea>
         </div>
 
         <div className="column card mde-output-height">
@@ -99,16 +101,21 @@ export default class Mde extends Component {
       <div className="hero-hotter columns pb-5 pl-5 pr-5">
         <div className="column field has-addons">
           <div className="control">
-            <input className="input" type="text" placeholder="タイトルを入力" size="50" onInput={this.onInputTitle} />
+            <input className="input" type="text" value={this.state.title} placeholder="タイトルを入力" size="50" onInput={this.onInputTitle} />
           </div>
           <div className="control">
             <button className="button is-info" disabled={!this.state.user} onClick={this.saveMd}>
               <i className="far fa-edit"></i>&nbsp;{this.state.id ? '編集' : '保存'}
             </button>
           </div>
+        {this.state.user &&
+          <Link to="/mdl" className="button is-info btnMdl">
+            一覧に戻る
+          </Link>
+        }
         </div>
         {!this.state.user &&
-          <div className="column notification is-primary mb-5">
+          <div className="column notification is-primary">
             保存機能はログイン後に有効になります。
           </div>
         }

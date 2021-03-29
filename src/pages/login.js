@@ -38,7 +38,7 @@ export default class Login extends Component {
 
     firebaseAuth.signInWithEmailAndPassword(email, password)
     .then((response) => {
-      this.props.history.push('/');
+      this.props.history.push('/mdl');
     })
     .catch((error) => {
       console.log(error);
