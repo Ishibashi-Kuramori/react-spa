@@ -96,6 +96,15 @@ export default class Mdl extends Component {
     });
   }
 
+  // 一覧のDownloadボタンクリック時
+  downloadMd = (text) => {
+    const element = document.createElement('a');
+    const file = new Blob([text], {type: 'text/plain;charset=utf-8'});
+    element.href = URL.createObjectURL(file);
+    element.download = "README.md";
+    element.click();
+  }
+
   render() {
     return (<div>
 
@@ -144,6 +153,9 @@ export default class Mdl extends Component {
                       </button>
                       <button className="button is-danger is-small" onClick={() => { this.showModal(index) }}>
                         <i className="far fa-trash-alt"></i>&nbsp;削除
+                      </button>
+                      <button className="button is-success is-small" onClick={() => { this.downloadMd(md.text) }}>
+                        <i className="fas fa-download"></i>&nbsp;Download
                       </button>
                     </td>
                   </tr>)}

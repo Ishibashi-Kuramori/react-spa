@@ -4,6 +4,25 @@ import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown/with-html';
 import {firebaseStore} from '../firebase.js';
 import firebase from "firebase/app";
+import {useDropzone} from 'react-dropzone';
+
+function InputText(props) {
+
+  const {getRootProps} = useDropzone({ onDrop: files => {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      props.fileRead(files[0].name, e.target.result);
+    };
+    reader.readAsText(files[0]);
+  }});
+
+  return (
+    <div {...getRootProps({className: 'dropzone column mde-input-height'})}>
+      <textarea className="textarea is-large has-fixed-size" value={props.text} 
+       placeholder="Markdownを入力。またはMarkdownファイルをここにドラッグ&ドロップ" onInput={props.onInputText}></textarea>
+    </div>
+  );
+}
 
 export default class Mde extends Component {
 
@@ -73,6 +92,14 @@ export default class Mde extends Component {
     });
   }
 
+  // ファイルのドラッグ＆ドロップ読み込み
+  fileRead = (title, text) => {
+    this.setState({
+      title: title,
+      text: text
+    });
+  }
+
   render() {
     return (<div id="mdePage">
 
@@ -81,9 +108,7 @@ export default class Mde extends Component {
     <div className="hero is-warning is-fullheight-with-navbar has-background-light">
       <div className="hero-body columns pt-5 pl-5 pr-5 pb-0">
 
-        <div className="column mde-input-height">
-          <textarea className="textarea is-large has-fixed-size" value={this.state.text} placeholder="Markdownを入力" onInput={this.onInputText}></textarea>
-        </div>
+        <InputText fileRead={this.fileRead} text={this.state.text} onInputText={this.onInputText} />
 
         <div className="column card mde-output-height">
           <div className="card-content">
